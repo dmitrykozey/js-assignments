@@ -427,10 +427,7 @@ function toStringList(arr) {
  *      { country: 'Russia',  city: 'Saint Petersburg' }
  */
 function sortCitiesArray(arr) {
-   let Belarus = ['Brest', 'Minsk'];
-   let Russia = ['Moscow', 'Saint Petersburg'];
-   let Poland = ['Krakow', 'Warsaw'];
-   throw new Error('Not implemented');
+   return arr.sort((a,b)=> a.country.localeCompare(b.country) || a.city.localeCompare(b.city));
 }
 
 /**
@@ -452,7 +449,8 @@ function sortCitiesArray(arr) {
  *           [0,0,0,0,1]]   
  */
 function getIdentityMatrix(n) {
-   throw new Error('Not implemented');
+   const matrix = n => [...Array(n)].map((e, i, a) => a.map(e => +!i--));
+   return matrix(n);
 }
 
 /**
@@ -469,7 +467,7 @@ function getIdentityMatrix(n) {
  *     3, 3   => [ 3 ]
  */
 function getIntervalArray(start, end) {
-   throw new Error('Not implemented');
+   return Array(end - start + 1).fill().map((item, index) => start + index);
 }
 
 /**
@@ -484,7 +482,7 @@ function getIntervalArray(start, end) {
  *   [ 1, 1, 2, 2, 3, 3, 4, 4] => [ 1, 2, 3, 4]
  */
 function distinct(arr) {
-   throw new Error('Not implemented');
+   return arr.filter((item, index, arr) => arr.indexOf(item) === index);
 }
 
 /**
@@ -534,7 +532,7 @@ function group(array, keySelector, valueSelector) {
  *   ['one','two','three'], x=>x.split('')  =>   ['o','n','e','t','w','o','t','h','r','e','e']
  */
 function selectMany(arr, childrenSelector) {
-    throw new Error('Not implemented');
+   return arr.flatMap(childrenSelector);
 }
 
 
@@ -551,7 +549,7 @@ function selectMany(arr, childrenSelector) {
  *   [[[ 1, 2, 3]]], [ 0, 0, 1 ]      => 2        (arr[0][0][1])
  */
 function getElementByIndexes(arr, indexes) {
-    throw new Error('Not implemented');
+   throw new Error('Not implemented');
 }
 
 
@@ -574,7 +572,10 @@ function getElementByIndexes(arr, indexes) {
  * 
  */
 function swapHeadAndTail(arr) {
-    throw new Error('Not implemented');
+   const head = arr.slice(0,Math.round((arr.length-1)/2))
+   const tail = arr.slice(Math.round(arr.length/2),arr.length)
+   const center = arr.slice(Math.round((arr.length-1)/2),Math.round(arr.length/2))
+   return [].concat(tail,center,head)
 }
 
 
